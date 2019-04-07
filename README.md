@@ -9,7 +9,7 @@ A arquitetura desenvolvida para esse desafio é a arquitetura de microserviços 
 * invillia-Order: API responsável por gerenciar as orders e items;
 * invillia-Billing: API responsável por gerenciar os payments;
     
-Itens comtemplados:
+Itens contemplados:
 
 * Database (H2, MYSQL, Liquibase)
 * Docker (Criado script para containers de banco e microserviço, desenvolvido em um servidor Ubuntu-Server (simulado ambiente de produção)
@@ -20,3 +20,7 @@ Itens comtemplados:
 * WireMockServer (Configurado no wrapper para simular as requisições aos microserviços)
 * Groovy (Teste funcional de exemplo, apenas realizado no microservice invillia-Store, Rest asurred, Framework spock)
 * Gradle (Gerenciamento de pacotes) - Não utilizei Maven
+
+Item não contemplado:
+Devido ao tempo para realização do desafio não consegui implementar os testes em todas as API's;
+Não realizada a funcionalidade de reembolso;
