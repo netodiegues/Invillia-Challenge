@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/invillia-Security.iml" filepath="$PROJECT_DIR$/invillia-Security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/invillia-Security_main.iml" filepath="$PROJECT_DIR$/.idea/modules/invillia-Security_main.iml" group="invillia-Security" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/invillia-Security_test.iml" filepath="$PROJECT_DIR$/.idea/modules/invillia-Security_test.iml" group="invillia-Security" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    
+    <!-- Table Order -->
+    <changeSet id="1" author="jose.diegues">
+        <createTable tableName="order">
+            <column name="id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+                   
+            <column name="address" type="varchar(100)" />
+            <column name="date_Confirmation" type="date" />
+            <column name="order_Status" type="bigint" />
+            <column name="store_Id" type="bigint" />
+            <column name="payment_Id" type="bigint" />
+            
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="jose.diegues">
+        <addPrimaryKey tableName="order" columnNames="id" constraintName="pk_order"/>
+    </changeSet>
+    <changeSet id="3" author="jose.diegues">
+        <addAutoIncrement tableName="order" columnName="id" columnDataType="bigint"/>
+    </changeSet>    
+</databaseChangeLog>

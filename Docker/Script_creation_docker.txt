@@ -1,0 +1,27 @@
+-- criando rede Acme
+
+docker network create --driver bridge acme
+
+docker run -d -p 3301:3306 -m 256M --name dbStore -v /var/lib/docker/volumes/dataStore:/var/lib/mysql -e MYSQL_ROOT_HOST=% -e MYSQL_DATABASE=service_Store -e MYSQL_USER=acme -e MYSQL_PASSWORD=acme -e MYSQL_ROOT_PASSWORD=a --network acme mysql/mysql-server:5.7.23 --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+docker run -d -p 3302:3306 -m 256M --name dbSecurity -v /var/lib/docker/volumes/dataSecurity:/var/lib/mysql -e MYSQL_ROOT_HOST=% -e MYSQL_DATABASE=service_Security -e MYSQL_USER=acme -e MYSQL_PASSWORD=acme -e MYSQL_ROOT_PASSWORD=a --network acme mysql/mysql-server:5.7.23 --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+docker run -d -p 3303:3306 -m 256M --name dbBilling -v /var/lib/docker/volumes/dataBilling:/var/lib/mysql -e MYSQL_ROOT_HOST=% -e MYSQL_DATABASE=service_Billing -e MYSQL_USER=acme -e MYSQL_PASSWORD=acme -e MYSQL_ROOT_PASSWORD=a --network acme mysql/mysql-server:5.7.23 --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+docker run -d -p 3304:3306 -m 256M --name dbOrder -v /var/lib/docker/volumes/dataOrder:/var/lib/mysql -e MYSQL_ROOT_HOST=% -e MYSQL_DATABASE=service_Order -e MYSQL_USER=acme -e MYSQL_PASSWORD=acme -e MYSQL_ROOT_PASSWORD=a --network acme mysql/mysql-server:5.7.23 --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+
+
+
+-- build images
+docker build -f store.Dockerfile -t acme/service-store .
+docker build -f security.Dockerfile -t acme/service-security .
+docker build -f billing.Dockerfile -t acme/service-billing .
+docker build -f order.Dockerfile -t acme/service-order .
+docker build -f wrapper.Dockerfile -t acme/service-wrapper .
+
+
+-- services
+docker run -d --network acme -p 9001:7000 --name service-store acme/service-store
+docker run -d --network acme -p 9002:7000 --name service-security acme/service-security
+docker run -d --network acme -p 9003:7000 --name service-order acme/service-order
+docker run -d --network acme -p 9004:7000 --name service-billing acme/service-billing
+
+docker run -d --network acme -p 8000:8000 --name service-wrapper acme/service-wrapper
+

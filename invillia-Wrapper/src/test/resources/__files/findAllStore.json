@@ -1,0 +1,41 @@
+{
+    "content": [
+        {
+            "id": "1",
+            "name": "Store Acme 01",
+            "address": "Acme Street 01"
+        },
+        {
+            "id": "2",
+            "name": "Store Acme 02",
+            "address": "Acme Street 03"
+        },
+        {
+            "id": "3",
+            "name": "Store Acme 03",
+            "address": "Acme Street 03"
+        }
+    ],
+    "pageable": {
+        "sort": {
+            "sorted": false,
+            "unsorted": true
+        },
+        "offset": 0,
+        "pageSize": 20,
+        "pageNumber": 0,
+        "paged": true,
+        "unpaged": false
+    },
+    "last": true,
+    "totalElements": 3,
+    "totalPages": 1,
+    "size": 20,
+    "number": 0,
+    "sort": {
+        "sorted": false,
+        "unsorted": true
+    },
+    "first": true,
+    "numberOfElements": 3
+}

@@ -1,0 +1,161 @@
+version: '3.3'
+services:
+
+    dbStore:        
+        container_name: dbStore
+        image: mysql/mysql-server:5.7.23          
+        environment:
+            - MYSQL_ROOT_HOST=%
+            - MYSQL_DATABASE=service_Store
+            - MYSQL_USER=acme
+            - MYSQL_PASSWORD=acme
+            - MYSQL_ROOT_PASSWORD=a
+        command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+        ports:
+            - "3301:3306"        
+        deploy:
+            resources:
+                limits:
+                    memory: 256m
+                reservations:              
+                    memory: 256m
+        volumes:
+            - /var/lib/docker/volumes/dataStore:/var/lib/mysql
+        networks:
+            - acme
+      
+    dbSecurity:        
+        container_name: dbSecurity
+        image: mysql/mysql-server:5.7.23          
+        environment:
+            - MYSQL_ROOT_HOST=%
+            - MYSQL_DATABASE=service_Security
+            - MYSQL_USER=acme
+            - MYSQL_PASSWORD=acme
+            - MYSQL_ROOT_PASSWORD=a
+        command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+        ports:
+            - "3302:3306"        
+        deploy:
+            resources:
+                limits:
+                    memory: 256m
+                reservations:              
+                    memory: 256m
+        volumes:
+            - /var/lib/docker/volumes/dataSecurity:/var/lib/mysql
+        networks:
+            - acme
+
+    dbBilling:        
+        container_name: dbBilling
+        image: mysql/mysql-server:5.7.23          
+        environment:
+            - MYSQL_ROOT_HOST=%
+            - MYSQL_DATABASE=service_Billing
+            - MYSQL_USER=acme
+            - MYSQL_PASSWORD=acme
+            - MYSQL_ROOT_PASSWORD=a
+        command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+        ports:
+            - "3303:3306"        
+        deploy:
+            resources:
+                limits:
+                    memory: 256m
+                reservations:              
+                    memory: 256m
+        volumes:
+            - /var/lib/docker/volumes/dataBilling:/var/lib/mysql
+        networks:
+            - acme
+
+    dbOrder:        
+        container_name: dbOrder
+        image: mysql/mysql-server:5.7.23          
+        environment:
+            - MYSQL_ROOT_HOST=%
+            - MYSQL_DATABASE=service_Order
+            - MYSQL_USER=acme
+            - MYSQL_PASSWORD=acme
+            - MYSQL_ROOT_PASSWORD=a
+        command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+        ports:
+            - "3304:3306"        
+        deploy:
+            resources:
+                limits:
+                    memory: 256m
+                reservations:              
+                    memory: 256m
+        volumes:
+            - /var/lib/docker/volumes/dataOrder:/var/lib/mysql
+        networks:
+            - acme
+           
+    service-store:
+        build:
+            dockerfile: store.Dockerfile
+            context: .
+        image: acme/service-store
+        container_name: service-store
+        ports:
+            - "9001:7000"                
+        networks:
+            - acme
+        depends_on:
+            - "dbStore"
+
+    service-security:
+        build:
+            dockerfile: security.Dockerfile
+            context: .
+        image: acme/service-security
+        container_name: service-security
+        ports:
+            - "9002:7000"                
+        networks:
+            - acme
+        depends_on:
+            - "dbSecurity"
+
+    service-order:
+        build:
+            dockerfile: order.Dockerfile
+            context: .
+        image: acme/service-order
+        container_name: service-order
+        ports:
+            - "9003:7000"                
+        networks:
+            - acme
+        depends_on:
+            - "dbOrder"
+    
+    service-billing:
+        build:
+            dockerfile: billing.Dockerfile
+            context: .
+        image: acme/service-billing
+        container_name: service-billing
+        ports:
+            - "9004:7000"                
+        networks:
+            - acme
+        depends_on:
+            - "dbBilling"
+        
+    service-wrapper:
+        build:
+            dockerfile: wrapper.Dockerfile
+            context: .
+        image: acme/service-wrapper
+        container_name: service-wrapper
+        ports:
+            - "8000:8000"                
+        networks:
+            - acme
+            
+networks:
+    acme:
+        driver: bridge

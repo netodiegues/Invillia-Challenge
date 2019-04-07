@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    
+    <!-- Table Order Item -->
+    <changeSet id="1" author="jose.diegues">
+        <createTable tableName="orderitem">
+            <column name="id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(100)" />            
+            <column name="price_Unitary" type="bigint(20)" />
+            <column name="quantity" type="bigint" />
+            <column name="order_id" type="bigint" />
+            
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="jose.diegues">
+        <addPrimaryKey tableName="orderitem" columnNames="id" constraintName="pk_order_item"/>
+    </changeSet>
+    <changeSet id="3" author="jose.diegues">
+        <addAutoIncrement tableName="orderitem" columnName="id" columnDataType="bigint"/>
+    </changeSet>    
+</databaseChangeLog>

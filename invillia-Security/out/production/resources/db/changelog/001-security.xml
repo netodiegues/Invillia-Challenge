@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    
+    <!-- User -->
+    <changeSet id="1" author="jose.diegues">                
+        <createTable tableName="user">            
+            <column name="id" type="bigint" >
+                <constraints primaryKey="true" primaryKeyName="pk_user" nullable="false"/>
+            </column>    
+            <column name="username" type="varchar(100)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="UQ_user_login"/>
+            </column>
+            <column name="password" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>            
+        </createTable>        
+    </changeSet>   
+      
+    <changeSet id="2" author="jose.diegues">
+        <insert tableName="user">
+            <column name="id" valueNumeric="1"/>
+            <column name="username" value="acme"/>
+            <column name="password" value="$2a$10$Uk0QZE.2AXjPdsRRQMcnTecd2Qy2sKuH6g2WOelA2M.62YVnPR17y"/>            
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="jose.diegues">
+        <addAutoIncrement tableName="user" columnName="id" columnDataType="bigint"/>
+    </changeSet> 
+    
+</databaseChangeLog>

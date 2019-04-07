@@ -1,0 +1,68 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'application'
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+applicationDefaultJvmArgs = ["-Xmx128m"]
+group = 'com.acme'
+version = ''
+sourceCompatibility = 1.8
+
+mainClassName = 'com.acme.order.ServiceApplication'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    
+    //Java 
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    
+    // Spring
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-data-rest'
+    compile 'org.springframework.boot:spring-boot-starter-web'     
+    testCompile('org.springframework.boot:spring-boot-starter-test')        
+    runtime('org.springframework.boot:spring-boot-devtools')    
+    
+    //Liquibase
+    compile('org.liquibase:liquibase-core')    
+    
+    //MySQL
+    runtime('mysql:mysql-connector-java')
+    
+    //H2
+    runtime('com.h2database:h2')
+    
+    // Rest Assured    
+    compile 'io.rest-assured:json-path:3.1.0'    
+    testCompile 'io.rest-assured:rest-assured:3.1.0'
+    testCompile 'io.rest-assured:json-schema-validator:3.1.0'
+    testCompile 'io.rest-assured:spring-mock-mvc:3.1.0'
+    
+    // Spock
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+    testCompile 'org.spockframework:spock-spring:1.1-groovy-2.4'
+    testRuntime 'cglib:cglib-nodep:3.2.4'
+    
+    //spring-boot-starter-security
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.0.6.RELEASE'
+    
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+}

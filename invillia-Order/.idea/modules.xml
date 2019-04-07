@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/invillia-Order.iml" filepath="$PROJECT_DIR$/invillia-Order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/invillia-Order_main.iml" filepath="$PROJECT_DIR$/.idea/modules/invillia-Order_main.iml" group="invillia-Order" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/invillia-Order_test.iml" filepath="$PROJECT_DIR$/.idea/modules/invillia-Order_test.iml" group="invillia-Order" />
+    </modules>
+  </component>
+</project>
