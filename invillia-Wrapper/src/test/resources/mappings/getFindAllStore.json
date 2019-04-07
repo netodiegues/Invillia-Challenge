@@ -1,7 +1,7 @@
 {
     "request": {
         "method": "GET",
-        "url": "/people?page=0&size=20&sort"
+        "url": "wrapper/stores?page=0&size=20&sort"
     },
     "response": {
         "status": 200,
