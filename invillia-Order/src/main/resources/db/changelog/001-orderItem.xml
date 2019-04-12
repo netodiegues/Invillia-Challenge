@@ -24,4 +24,9 @@
     <changeSet id="3" author="jose.diegues">
         <addAutoIncrement tableName="orderitem" columnName="id" columnDataType="bigint"/>
     </changeSet>    
+    
+    <changeSet id="4" author="jose.diegues">
+       <addForeignKeyConstraint baseTableName="orderitem" constraintName="fk_orderitem_order" baseColumnNames="order_Id" referencedTableName="order" referencedColumnNames="id"/>
+    </changeSet>    
+    
 </databaseChangeLog>
